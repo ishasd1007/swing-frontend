@@ -60,7 +60,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(res.user));
         localStorage.setItem("token", res.token);
 
-        navigate("/dashboard"); // ✅ dashboard open hoga
+       window.location.href = "/#/dashboard"; // ✅ dashboard open hoga
       } else {
         // ✅ FIXED REGISTER CALL
         await registerUser({
