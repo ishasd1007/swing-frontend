@@ -3,6 +3,7 @@ import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import { loginUser, registerUser } from "../services/api";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 const Login = () => {
   const navigate = useNavigate();
 
@@ -17,11 +18,14 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
 
+  // ✅ FIXED HANDLE CHANGE
   const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+
+    setForm((prev) => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const validate = () => {
@@ -56,9 +60,16 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(res.user));
         localStorage.setItem("token", res.token);
 
-        navigate("/dashboard");
+        navigate("/dashboard"); // ✅ dashboard open hoga
       } else {
-        await registerUser(form);
+        // ✅ FIXED REGISTER CALL
+        await registerUser({
+          name: form.name,
+          email: form.email,
+          password: form.password
+        });
+
+        alert("Registered successfully ✅");
 
         setIsLogin(true);
         setForm({ name: "", email: "", password: "" });
@@ -77,7 +88,6 @@ const Login = () => {
       {errors.api && <p className="error">{errors.api}</p>}
 
       <form onSubmit={handleSubmit}>
-
         {!isLogin && (
           <>
             <input
@@ -100,23 +110,22 @@ const Login = () => {
         />
         {errors.email && <p className="error">{errors.email}</p>}
 
-        {/* 🔥 PASSWORD WITH EYE */}
-       <div className="password-field">
-  <input
-    type={showPassword ? "text" : "password"}
-    name="password"
-    placeholder="Enter password"
-    value={form.password}
-    onChange={handleChange}
-  />
+        <div className="password-field">
+          <input
+            type={showPassword ? "text" : "password"}
+            name="password"
+            placeholder="Enter password"
+            value={form.password}
+            onChange={handleChange}
+          />
 
-  <span
-    className="eye"
-    onClick={() => setShowPassword(!showPassword)}
-  >
-    {showPassword ? <FaEyeSlash /> : <FaEye />}
-  </span>
-</div>
+          <span
+            className="eye"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </span>
+        </div>
 
         <button type="submit">
           {isLogin ? "Login" : "Register"}
@@ -139,4 +148,5 @@ const Login = () => {
     </div>
   );
 };
+
 export default Login;
