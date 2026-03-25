@@ -1,13 +1,12 @@
 import axios from "axios";
 
-const API = "https://swing-backend-eejk.onrender.com/api";  // 🔥 MUST
+const API = axios.create({
+  baseURL: "https://swing-backend-eejk.onrender.com/api",
+  headers: {
+    "Content-Type": "application/json"
+  }
+});
 
-export const loginUser = async (data) => {
-  const res = await axios.post(`${API}/auth/login`, data);
-  return res.data;
-};
+export const loginUser = (data) => API.post("/auth/login", data);
 
-export const registerUser = async (data) => {
-  const res = await axios.post(`${API}/auth/register`, data);
-  return res.data;
-};
+export const registerUser = (data) => API.post("/auth/register", data);
