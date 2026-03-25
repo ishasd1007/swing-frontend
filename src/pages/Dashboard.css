@@ -1,0 +1,155 @@
+/* BACKGROUND (MATCH HOME) */
+.dashboard {
+  height: 100vh;
+  font-family: 'Inter', sans-serif;
+  background: radial-gradient(circle at top, #1e293b, #0b0f19);
+  color: #e5e7eb;
+  position: relative;
+  padding: 0;
+}
+/* SAME GLOW EFFECT */
+.dashboard::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #6366f1;
+  filter: blur(140px);
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.2;
+}
+.dash-title {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-top: 40px;
+  text-align: center;
+
+  background: linear-gradient(
+    90deg,
+    #e0e7ff,
+    #a5b4fc,
+    #6366f1,
+    #8b5cf6
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  text-align: center;
+  margin-bottom: 30px;
+}
+.dash-card {
+  background: rgba(30, 41, 59, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
+  border: 1px solid rgba(255,255,255,0.05);
+
+}
+
+.dash-card:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  padding: 0 40px;
+}
+.dash-card input,
+.dash-card select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background: #0f172a;
+  color: white;
+  transition: 0.2s;
+}
+
+.dash-card input:focus {
+  border: 1px solid #6366f1;
+}
+
+/* BUTTON */
+.dash-card button {
+  margin-top: 12px;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.dash-card button:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+.result {
+  margin-top: 12px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #22c55e;
+}
+
+.info {
+  margin-top: 10px;
+  color: #cbd5f5;
+}
+.score-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+.score-card {
+  background: #0f172a;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #a5b4fc;
+}
+.draw-grid {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.draw-ball {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.win {
+  color: #22c55e;
+}
+
+.lose {
+  color: #ef4444;
+}
+.navbar {
+ max-width:100%;
+  padding: 20px 10px;
+  position: relative;
+  z-index: 10;
+margin: 0 auto;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+} 
