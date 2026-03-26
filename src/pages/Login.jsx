@@ -64,7 +64,7 @@ const Login = () => {
         localStorage.setItem("user", JSON.stringify(res.user));
         localStorage.setItem("token", res.token);
 
-        window.location.hash = "/dashboard"; // ✅ FIXED REDIRECT
+        window.location.href = "/#/dashboard";
       } else {
         await registerUser({
           name: form.name,
