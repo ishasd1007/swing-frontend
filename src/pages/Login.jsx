@@ -18,7 +18,7 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
 
-  // ✅ FIXED HANDLE CHANGE
+  // ✅ HANDLE CHANGE
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -50,6 +50,8 @@ const Login = () => {
 
     if (!validate()) return;
 
+    console.log("FORM DATA:", form); // 🔥 DEBUG LINE
+
     try {
       if (isLogin) {
         const res = await loginUser({
@@ -57,12 +59,13 @@ const Login = () => {
           password: form.password
         });
 
+        console.log("LOGIN RESPONSE:", res); // 🔥 DEBUG
+
         localStorage.setItem("user", JSON.stringify(res.user));
         localStorage.setItem("token", res.token);
 
-       window.location.href = "/#/dashboard"; // ✅ dashboard open hoga
+        window.location.hash = "/dashboard"; // ✅ FIXED REDIRECT
       } else {
-        // ✅ FIXED REGISTER CALL
         await registerUser({
           name: form.name,
           email: form.email,
@@ -75,6 +78,8 @@ const Login = () => {
         setForm({ name: "", email: "", password: "" });
       }
     } catch (err) {
+      console.log("ERROR:", err); // 🔥 DEBUG
+
       setErrors({
         api: err.response?.data?.message || "Something went wrong"
       });
